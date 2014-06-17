@@ -19,7 +19,7 @@ namespace MOD_Club_Acrossdivisions
             InClass["連線(跨部別)"].Image = Properties.Resources.asymmetric_network_64;
             InClass["連線(跨部別)"].Click += delegate
             {
-                Connection con = new Connection();
+                NowConnection con = new NowConnection();
                 con.ShowDialog();
             };
 
@@ -43,14 +43,12 @@ namespace MOD_Club_Acrossdivisions
             InClass["報表"]["社團概況表(跨部別)"].Click += delegate
             {
 
-
             };
 
             RibbonBarItem InStudent = FISCA.Presentation.MotherForm.RibbonBarItems["學生", "資料統計"];
             InStudent["報表"]["社團相關報表"]["英文社團證明單"].Enable = false;
             InStudent["報表"]["社團相關報表"]["英文社團證明單"].Click += delegate
             {
-
 
             };
 

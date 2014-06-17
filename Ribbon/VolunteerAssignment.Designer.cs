@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnSaave = new DevComponents.DotNetBar.ButtonX();
+            this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.lbHelpS = new DevComponents.DotNetBar.LabelX();
+            this.lbSelectClassCount = new DevComponents.DotNetBar.LabelX();
+            this.lbHelpConSchool = new DevComponents.DotNetBar.LabelX();
             this.colSchool = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,28 +43,27 @@
             this.colNowUp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCLUBRecord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbHelpS = new DevComponents.DotNetBar.LabelX();
-            this.lbSelectClassCount = new DevComponents.DotNetBar.LabelX();
-            this.lbHelpConSchool = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnSaave
+            // btnSave
             // 
-            this.btnSaave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSaave.BackColor = System.Drawing.Color.Transparent;
-            this.btnSaave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaave.Location = new System.Drawing.Point(723, 537);
-            this.btnSaave.Name = "btnSaave";
-            this.btnSaave.Size = new System.Drawing.Size(75, 25);
-            this.btnSaave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSaave.TabIndex = 0;
-            this.btnSaave.Text = "開始分配";
-            this.btnSaave.Click += new System.EventHandler(this.btnSaave_Click);
+            this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSave.Location = new System.Drawing.Point(723, 537);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 25);
+            this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "開始分配";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnExit
             // 
             this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnExit.Location = new System.Drawing.Point(804, 537);
@@ -74,6 +76,9 @@
             // 
             // dataGridViewX1
             // 
+            this.dataGridViewX1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewX1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -97,55 +102,10 @@
             this.dataGridViewX1.Location = new System.Drawing.Point(13, 40);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
+            this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewX1.Size = new System.Drawing.Size(866, 485);
             this.dataGridViewX1.TabIndex = 2;
-            // 
-            // colSchool
-            // 
-            this.colSchool.HeaderText = "學校";
-            this.colSchool.Name = "colSchool";
-            this.colSchool.Width = 150;
-            // 
-            // colYear
-            // 
-            this.colYear.HeaderText = "年級";
-            this.colYear.Name = "colYear";
-            this.colYear.Width = 60;
-            // 
-            // colClass
-            // 
-            this.colClass.HeaderText = "班級";
-            this.colClass.Name = "colClass";
-            // 
-            // colTeacher
-            // 
-            this.colTeacher.HeaderText = "老師";
-            this.colTeacher.Name = "colTeacher";
-            this.colTeacher.Width = 80;
-            // 
-            // colStudentCount
-            // 
-            this.colStudentCount.HeaderText = "學生數";
-            this.colStudentCount.Name = "colStudentCount";
-            this.colStudentCount.Width = 80;
-            // 
-            // colNowUp
-            // 
-            this.colNowUp.HeaderText = "已填志願人數";
-            this.colNowUp.Name = "colNowUp";
-            this.colNowUp.Width = 110;
-            // 
-            // colCLUBRecord
-            // 
-            this.colCLUBRecord.HeaderText = "參與社團人數";
-            this.colCLUBRecord.Name = "colCLUBRecord";
-            this.colCLUBRecord.Width = 110;
-            // 
-            // colLock
-            // 
-            this.colLock.HeaderText = "社團鎖定人數";
-            this.colLock.Name = "colLock";
-            this.colLock.Width = 110;
+            this.dataGridViewX1.SelectionChanged += new System.EventHandler(this.dataGridViewX1_SelectionChanged);
             // 
             // lbHelpS
             // 
@@ -190,9 +150,64 @@
             this.lbHelpConSchool.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbHelpConSchool.Location = new System.Drawing.Point(13, 11);
             this.lbHelpConSchool.Name = "lbHelpConSchool";
-            this.lbHelpConSchool.Size = new System.Drawing.Size(235, 21);
+            this.lbHelpConSchool.Size = new System.Drawing.Size(77, 21);
             this.lbHelpConSchool.TabIndex = 6;
-            this.lbHelpConSchool.Text = "已連線學校:dev.sh_d / demo.ischool.j";
+            this.lbHelpConSchool.Text = "已連線學校:";
+            // 
+            // colSchool
+            // 
+            this.colSchool.DataPropertyName = "School";
+            this.colSchool.HeaderText = "學校";
+            this.colSchool.Name = "colSchool";
+            this.colSchool.Width = 150;
+            // 
+            // colYear
+            // 
+            this.colYear.DataPropertyName = "GradeYear";
+            this.colYear.HeaderText = "年級";
+            this.colYear.Name = "colYear";
+            this.colYear.Width = 60;
+            // 
+            // colClass
+            // 
+            this.colClass.DataPropertyName = "ClassName";
+            this.colClass.HeaderText = "班級";
+            this.colClass.Name = "colClass";
+            // 
+            // colTeacher
+            // 
+            this.colTeacher.DataPropertyName = "TeacherName";
+            this.colTeacher.HeaderText = "老師";
+            this.colTeacher.Name = "colTeacher";
+            this.colTeacher.Width = 80;
+            // 
+            // colStudentCount
+            // 
+            this.colStudentCount.DataPropertyName = "StudentCount";
+            this.colStudentCount.HeaderText = "學生數";
+            this.colStudentCount.Name = "colStudentCount";
+            this.colStudentCount.Width = 80;
+            // 
+            // colNowUp
+            // 
+            this.colNowUp.DataPropertyName = "SelectCount";
+            this.colNowUp.HeaderText = "已填志願人數";
+            this.colNowUp.Name = "colNowUp";
+            this.colNowUp.Width = 110;
+            // 
+            // colCLUBRecord
+            // 
+            this.colCLUBRecord.DataPropertyName = "NumberOfParticipants";
+            this.colCLUBRecord.HeaderText = "參與社團人數";
+            this.colCLUBRecord.Name = "colCLUBRecord";
+            this.colCLUBRecord.Width = 110;
+            // 
+            // colLock
+            // 
+            this.colLock.DataPropertyName = "LockNumber";
+            this.colLock.HeaderText = "社團鎖定人數";
+            this.colLock.Name = "colLock";
+            this.colLock.Width = 110;
             // 
             // VolunteerAssignment
             // 
@@ -204,10 +219,11 @@
             this.Controls.Add(this.lbHelpS);
             this.Controls.Add(this.dataGridViewX1);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnSaave);
+            this.Controls.Add(this.btnSave);
             this.DoubleBuffered = true;
             this.Name = "VolunteerAssignment";
             this.Text = "社團志願分配(跨部別)";
+            this.Load += new System.EventHandler(this.VolunteerAssignment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -216,11 +232,12 @@
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX btnSaave;
+        private DevComponents.DotNetBar.ButtonX btnSave;
         private DevComponents.DotNetBar.ButtonX btnExit;
         private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
         private DevComponents.DotNetBar.LabelX lbHelpS;
         private DevComponents.DotNetBar.LabelX lbSelectClassCount;
+        private DevComponents.DotNetBar.LabelX lbHelpConSchool;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSchool;
         private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn colClass;
@@ -229,6 +246,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNowUp;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCLUBRecord;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLock;
-        private DevComponents.DotNetBar.LabelX lbHelpConSchool;
     }
 }
