@@ -31,9 +31,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Cells.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=4.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Words.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Campus.Configuration, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\Campus.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Report, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Class.RollCallSheet\班級點名單_套表列印\Library\Campus.Report.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
@@ -85,6 +100,10 @@
       <HintPath>Library\FISCA.UDT.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="K12.Club.Volunteer">
+      <HintPath>..\..\ischool高中\addmodules\MOD_Club.Volunteer\K12.Club.Volunteer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="K12.Data, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\K12.Data.dll</HintPath>
@@ -111,6 +130,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompleteForm.designer.cs">
+      <DependentUpon>CompleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewExport.cs" />
+    <Compile Include="Def.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,13 +152,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Record\ClassRowInfo.cs" />
-    <Compile Include="Record\OnlineLock.cs" />
+    <Compile Include="Record\GradeCount.cs" />
+    <Compile Include="Record\OnlineSCJoin.cs" />
     <Compile Include="Record\OnlineMergerClub.cs" />
+    <Compile Include="Record\OnlinePresident.cs" />
+    <Compile Include="Record\StudentRSRecord.cs" />
+    <Compile Include="Ribbon\ClubPointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\ClubPointForm.Designer.cs">
+      <DependentUpon>ClubPointForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ribbon\EnglishSocietiesProveSingle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ribbon\EnglishSocietiesProveSingle.Designer.cs">
       <DependentUpon>EnglishSocietiesProveSingle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\EnglishTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\EnglishTableForm.Designer.cs">
+      <DependentUpon>EnglishTableForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Ribbon\SocietiesOverviewTable.cs">
       <SubType>Form</SubType>
@@ -139,8 +181,13 @@
     <Compile Include="Ribbon\SocietiesOverviewTable.Designer.cs">
       <DependentUpon>SocietiesOverviewTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ribbon\ClubPointList.cs" />
-    <Compile Include="Ribbon\Va_Ser.cs" />
+    <Compile Include="Ribbon\VolunteerJoinBox.cs" />
+    <Compile Include="Ribbon\VolunteerStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\VolunteerStudentForm.designer.cs">
+      <DependentUpon>VolunteerStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ribbon\VolunteerAssignment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,17 +200,24 @@
     <Compile Include="Ribbon\NowConnection.Designer.cs">
       <DependentUpon>NowConnection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ser.cs" />
+    <Compile Include="RunService.cs" />
     <Compile Include="tool.cs" />
     <Compile Include="Record\AcrossRecord.cs" />
     <Compile Include="Record\OnlineClub.cs" />
+    <Compile Include="UDT\EnglishTable.cs" />
     <Compile Include="UDT\LoginSchool.cs" />
     <Compile Include="Record\OnlineStudent.cs" />
     <Compile Include="Record\OnlineVolunteer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Library\Aspose.Cells.dll" />
+    <Content Include="Library\Aspose.Cells.xml" />
+    <Content Include="Library\Aspose.Words.dll" />
+    <Content Include="Library\Aspose.Words.xml" />
     <Content Include="Library\Campus.Configuration.dll" />
     <Content Include="Library\Campus.Configuration.pdb" />
+    <Content Include="Library\Campus.Report.dll" />
+    <Content Include="Library\Campus.Report.pdb" />
     <Content Include="Library\DevComponents.DotNetBar2.dll" />
     <Content Include="Library\FISCA.Authentication.dll" />
     <Content Include="Library\FISCA.Authentication.pdb" />
@@ -199,17 +253,33 @@
     <Content Include="Library\SmartSchool.ErrorReporting.dll" />
     <Content Include="Library\SmartSchool.ErrorReporting.pdb" />
     <Content Include="Library\SmartSchool.ErrorReporting.xml" />
+    <None Include="Resources\copy_refresh_64.png" />
     <None Include="Resources\Report.png" />
     <None Include="Resources\asymmetric_network_64.png" />
     <None Include="Resources\flip_horizontal_64.png" />
+    <None Include="Resources\班級點名單_週報表樣式範本.doc" />
+    <None Include="Resources\班級點名表_合併欄位總表.doc" />
+    <None Include="Resources\社團參與證明單_英文_合併欄位總表.doc" />
+    <None Include="Resources\社團參與證明單_英文_範本.doc" />
+    <None Include="Resources\社團概況表_合併欄位總表.doc" />
+    <None Include="Resources\社團概況表_範本.doc" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CompleteForm.resx">
+      <DependentUpon>CompleteForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\ClubPointForm.resx">
+      <DependentUpon>ClubPointForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\EnglishSocietiesProveSingle.resx">
       <DependentUpon>EnglishSocietiesProveSingle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\EnglishTableForm.resx">
+      <DependentUpon>EnglishTableForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\VolunteerAssignment.resx">
       <DependentUpon>VolunteerAssignment.cs</DependentUpon>
@@ -219,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\NowConnection.resx">
       <DependentUpon>NowConnection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\VolunteerStudentForm.resx">
+      <DependentUpon>VolunteerStudentForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

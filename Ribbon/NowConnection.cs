@@ -32,16 +32,17 @@ namespace MOD_Club_Acrossdivisions
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.CreateCells(dataGridViewX1);
-                    row.Cells[0].Value = each.School_Name;
-                    row.Cells[1].Value = "click me";
+                    row.Cells[SchoolDomain.Index].Value = each.School_Name;
+                    row.Cells[remake.Index].Value = each.Remark;
+                    row.Cells[ColConnection.Index].Value = "click me";
                     dataGridViewX1.Rows.Add(row);
 
                     //檢查
-                    Exception ex = Ser.TestConnection(each.School_Name);
+                    Exception ex = tool.TestConnection(each.School_Name);
                     if (ex != null)
-                        row.Cells[2].Value = ex.Message;
+                        row.Cells[ColStatus.Index].Value = ex.Message;
                     else
-                        row.Cells[2].Value = "成功";
+                        row.Cells[ColStatus.Index].Value = "成功";
                 }
             }
         }
@@ -50,7 +51,7 @@ namespace MOD_Club_Acrossdivisions
         {
             LastObj _app = new LastObj();
             _app.row = row;
-            _app.row.Cells[2].Value = "連線中,請稍後...";
+            _app.row.Cells[ColStatus.Index].Value = "連線中,請稍後...";
 
             BackgroundWorker BGW = new BackgroundWorker();
             BGW.DoWork += BGW_DoWork;
@@ -61,7 +62,7 @@ namespace MOD_Club_Acrossdivisions
         void BGW_DoWork(object sender, DoWorkEventArgs e)
         {
             LastObj _app = (LastObj)e.Argument;
-            _app.message = Ser.CheckAccount("" + _app.row.Cells[0].Value);
+            _app.message = tool.CheckAccount("" + _app.row.Cells[SchoolDomain.Index].Value);
             e.Result = _app;
         }
 
@@ -72,16 +73,16 @@ namespace MOD_Club_Acrossdivisions
             {
                 if (e.Error == null)
                 {
-                    _app.row.Cells[2].Value = _app.message;
+                    _app.row.Cells[ColStatus.Index].Value = _app.message;
                 }
                 else
                 {
-                    _app.row.Cells[2].Value = "失敗：其它：" + e.Error.Message;
+                    _app.row.Cells[ColStatus.Index].Value = "失敗：其它：" + e.Error.Message;
                 }
             }
             else
             {
-                _app.row.Cells[2].Value = "失敗：其它：已取消連線";
+                _app.row.Cells[ColStatus.Index].Value = "失敗：其它：已取消連線";
             }
         }
 
@@ -91,7 +92,7 @@ namespace MOD_Club_Acrossdivisions
                 return;
 
             //當使用點擊位置並非錯誤欄位
-            if (e.ColumnIndex == 1)
+            if (e.ColumnIndex == ColConnection.Index)
             {
                 DataGridViewRow row = dataGridViewX1.CurrentRow;
                 Connet(row);
@@ -108,13 +109,30 @@ namespace MOD_Club_Acrossdivisions
             if (e.Row.Index != -1)
             {
                 DataGridViewRow row = dataGridViewX1.Rows[e.Row.Index - 1];
-                row.Cells[1].Value = "click me";
-                row.Cells[2].Value = "未連線";
+                row.Cells[ColConnection.Index].Value = "測試連線";
+                row.Cells[ColStatus.Index].Value = "未連線";
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            bool check = false;
+            foreach (DataGridViewRow row in dataGridViewX1.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                if ("" + row.Cells[ColStatus.Index].Value != "成功")
+                {
+                    check = true;
+                }
+            }
+            if (check)
+            {
+                MsgBox.Show("資料尚有錯誤,無法儲存!!");
+                return;
+            }
+
             List<LoginSchool> delList = tool._A.Select<LoginSchool>();
             tool._A.DeletedValues(delList);
 
@@ -124,10 +142,11 @@ namespace MOD_Club_Acrossdivisions
                 if (row.IsNewRow)
                     continue;
 
-                if ("" + row.Cells[2].Value == "成功")
+                if ("" + row.Cells[ColStatus.Index].Value == "成功")
                 {
                     LoginSchool ls = new LoginSchool();
-                    ls.School_Name = "" + row.Cells[0].Value;
+                    ls.School_Name = "" + row.Cells[SchoolDomain.Index].Value;
+                    ls.Remark = "" + row.Cells[remake.Index].Value;
                     LoginSchoolList.Add(ls);
                 }
             }
@@ -135,9 +154,13 @@ namespace MOD_Club_Acrossdivisions
             if (LoginSchoolList.Count > 0)
             {
                 tool._A.InsertValues(LoginSchoolList);
+                MsgBox.Show("儲存成功");
+                this.Close();
             }
-            MsgBox.Show("儲存成功");
-            this.Close();
+            else
+            {
+                MsgBox.Show("未儲存任何資料!");
+            }
         }
     }
     class LastObj

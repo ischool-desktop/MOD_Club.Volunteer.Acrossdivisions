@@ -15,6 +15,27 @@ namespace MOD_Club_Acrossdivisions
         [Field(Field = "school_name", Indexed = true)]
         public string School_Name { get; set; }
 
+        /// <summary>
+        /// 備註
+        /// </summary>
+        [Field(Field = "remark", Indexed = true)]
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 取得學校全名
+        /// </summary>
+        public string GetFullName()
+        {
+            if (string.IsNullOrEmpty(Remark))
+            {
+                return School_Name;
+            }
+            else
+            {
+                return School_Name + "(" + Remark + ")";
+            }
+
+        }
 
     }
 }

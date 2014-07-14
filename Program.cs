@@ -1,6 +1,7 @@
 ﻿using FISCA;
 using FISCA.Permission;
 using FISCA.Presentation;
+using K12.Data.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,35 @@ namespace MOD_Club_Acrossdivisions
         [MainMethod()]
         static public void Main()
         {
+
+            ServerModule.AutoManaged("https://module.ischool.com.tw/module/138/Club_Acrossdivisions/udm.xml");
+
+            #region 處理UDT Table沒有的問題
+
+            ConfigData cd = K12.Data.School.Configuration["跨部別社團UDT載入設定"];
+            bool checkClubUDT = false;
+
+            string name = "社團UDT是否已載入_20140709";
+            //如果尚無設定值,預設為
+            if (string.IsNullOrEmpty(cd[name]))
+            {
+                cd[name] = "false";
+            }
+
+            //檢查是否為布林
+            bool.TryParse(cd[name], out checkClubUDT);
+
+            if (!checkClubUDT)
+            {
+                tool._A.Select<EnglishTable>("UID = '00000'");
+                tool._A.Select<LoginSchool>("UID = '00000'");
+
+                cd[name] = "true";
+                cd.Save();
+            }
+
+            #endregion
+
             RibbonBarItem InClass = FISCA.Presentation.MotherForm.RibbonBarItems["志願序社團", "跨部別"];
             InClass["連線(跨部別)"].Enable = Permissions.連線權限;
             InClass["連線(跨部別)"].Image = Properties.Resources.asymmetric_network_64;
@@ -36,20 +66,32 @@ namespace MOD_Club_Acrossdivisions
             InClass["報表"]["社團點名單(跨部別)"].Enable = Permissions.社團點名單權限;
             InClass["報表"]["社團點名單(跨部別)"].Click += delegate
             {
-                ClubPointList cpl = new ClubPointList();
+                ClubPointForm cpl = new ClubPointForm();
+                cpl.ShowDialog();
             };
 
             InClass["報表"]["社團概況表(跨部別)"].Enable = Permissions.社團概況表權限;
             InClass["報表"]["社團概況表(跨部別)"].Click += delegate
             {
+                SocietiesOverviewTable sot = new SocietiesOverviewTable();
+                sot.ShowDialog();
+            };
 
+            RibbonBarItem InClub = FISCA.Presentation.MotherForm.RibbonBarItems["志願序社團", "其它"];
+            InClub["社團中英文管理"].Image = Properties.Resources.copy_refresh_64;
+            InClub["社團中英文管理"].Enable = Permissions.社團中英文對照表權限;
+            InClub["社團中英文管理"].Click += delegate
+            {
+                EnglishTableForm sot = new EnglishTableForm();
+                sot.ShowDialog();
             };
 
             RibbonBarItem InStudent = FISCA.Presentation.MotherForm.RibbonBarItems["學生", "資料統計"];
-            InStudent["報表"]["社團相關報表"]["英文社團證明單"].Enable = false;
-            InStudent["報表"]["社團相關報表"]["英文社團證明單"].Click += delegate
+            InStudent["報表"]["社團相關報表"]["社團參與證明單(英文)"].Enable = Permissions.社團參與證明單_英文權限;
+            InStudent["報表"]["社團相關報表"]["社團參與證明單(英文)"].Click += delegate
             {
-
+                EnglishSocietiesProveSingle esps = new EnglishSocietiesProveSingle();
+                esps.ShowDialog();
             };
 
             //是否能夠只用單一代碼,決定此模組之使用
@@ -57,13 +99,14 @@ namespace MOD_Club_Acrossdivisions
             detail1 = RoleAclSource.Instance["社團"]["功能項目"];
             detail1.Add(new RibbonFeature(Permissions.連線, "連線_跨部別"));
             detail1.Add(new RibbonFeature(Permissions.社團志願分配, "社團志願分配_跨部別"));
+            detail1.Add(new RibbonFeature(Permissions.社團中英文對照表, "社團中英文對照表"));
 
             detail1 = RoleAclSource.Instance["社團"]["報表"];
             detail1.Add(new RibbonFeature(Permissions.社團點名單, "社團點名單_跨部別"));
             detail1.Add(new RibbonFeature(Permissions.社團概況表, "社團概況表_跨部別"));
 
             detail1 = RoleAclSource.Instance["學生"]["報表"];
-            detail1.Add(new RibbonFeature(Permissions.英文社團證明單, "英文社團證明單"));
+            detail1.Add(new RibbonFeature(Permissions.社團參與證明單_英文, "社團參與證明單_英文"));
         }
     }
 }
