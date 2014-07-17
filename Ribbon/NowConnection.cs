@@ -34,7 +34,7 @@ namespace MOD_Club_Acrossdivisions
                     row.CreateCells(dataGridViewX1);
                     row.Cells[SchoolDomain.Index].Value = each.School_Name;
                     row.Cells[remake.Index].Value = each.Remark;
-                    row.Cells[ColConnection.Index].Value = "click me";
+                    row.Cells[ColConnection.Index].Value = "測試";
                     dataGridViewX1.Rows.Add(row);
 
                     //檢查

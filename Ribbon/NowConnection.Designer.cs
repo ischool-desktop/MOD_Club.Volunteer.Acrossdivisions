@@ -47,7 +47,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(450, 309);
+            this.btnSave.Location = new System.Drawing.Point(450, 333);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -61,7 +61,7 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(531, 310);
+            this.btnExit.Location = new System.Drawing.Point(531, 334);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -140,22 +140,23 @@
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Location = new System.Drawing.Point(12, 285);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(268, 56);
+            this.labelX1.Size = new System.Drawing.Size(378, 73);
             this.labelX1.TabIndex = 3;
-            this.labelX1.Text = "1.請輸入連結學校Domain Name\r\n2.連線必須於對象學校建立您的登入帳號\r\n3.請按\"測試連線\"鈕\"成功\"後才可以正確儲存";
+            this.labelX1.Text = "1.請輸入連結學校Domain Name\r\n2.於學校建立您的登入帳號,按\"測試\"鈕\"成功\"後才可以正確儲存\r\n3.必須是ischool Account才可以進行" +
+    "連線\r\n4.所有欲分配的部別均需設定於畫面上(包含目前登入之部別)";
             // 
             // NowConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 345);
+            this.ClientSize = new System.Drawing.Size(618, 369);
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.dataGridViewX1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
             this.DoubleBuffered = true;
             this.Name = "NowConnection";
-            this.Text = "跨部別連線設定";
+            this.Text = "志願分配部別設定(跨部別)";
             this.Load += new System.EventHandler(this.Connection_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);

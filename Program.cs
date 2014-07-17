@@ -45,9 +45,9 @@ namespace MOD_Club_Acrossdivisions
             #endregion
 
             RibbonBarItem InClass = FISCA.Presentation.MotherForm.RibbonBarItems["志願序社團", "跨部別"];
-            InClass["連線(跨部別)"].Enable = Permissions.連線權限;
-            InClass["連線(跨部別)"].Image = Properties.Resources.asymmetric_network_64;
-            InClass["連線(跨部別)"].Click += delegate
+            InClass["志願分配部別設定(跨部別)"].Enable = Permissions.連線權限;
+            InClass["志願分配部別設定(跨部別)"].Image = Properties.Resources.asymmetric_network_64;
+            InClass["志願分配部別設定(跨部別)"].Click += delegate
             {
                 NowConnection con = new NowConnection();
                 con.ShowDialog();
