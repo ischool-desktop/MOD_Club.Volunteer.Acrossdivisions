@@ -33,11 +33,6 @@
             this.btnStart = new DevComponents.DotNetBar.ButtonX();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbHelpS = new DevComponents.DotNetBar.LabelX();
-            this.lbSelectClassCount = new DevComponents.DotNetBar.LabelX();
-            this.lbHelpConSchool = new DevComponents.DotNetBar.LabelX();
             this.colSchool = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +41,11 @@
             this.colNowUp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCLUBRecord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbHelpS = new DevComponents.DotNetBar.LabelX();
+            this.lbSelectClassCount = new DevComponents.DotNetBar.LabelX();
+            this.lbHelpConSchool = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +56,7 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.BackColor = System.Drawing.Color.Transparent;
             this.btnStart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnStart.Location = new System.Drawing.Point(723, 542);
+            this.btnStart.Location = new System.Drawing.Point(723, 576);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 25);
             this.btnStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -70,7 +70,7 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(804, 542);
+            this.btnExit.Location = new System.Drawing.Point(804, 576);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 25);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -105,76 +105,15 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dataGridViewX1.Location = new System.Drawing.Point(13, 52);
+            this.dataGridViewX1.Location = new System.Drawing.Point(13, 72);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
             this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewX1.Size = new System.Drawing.Size(866, 474);
+            this.dataGridViewX1.Size = new System.Drawing.Size(866, 484);
             this.dataGridViewX1.TabIndex = 2;
             this.dataGridViewX1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellDoubleClick);
+            this.dataGridViewX1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewX1_ColumnHeaderMouseClick);
             this.dataGridViewX1.SelectionChanged += new System.EventHandler(this.dataGridViewX1_SelectionChanged);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 26);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 22);
-            this.toolStripMenuItem2.Text = "檢視志願序清單";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // lbHelpS
-            // 
-            this.lbHelpS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbHelpS.AutoSize = true;
-            this.lbHelpS.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.lbHelpS.BackgroundStyle.Class = "";
-            this.lbHelpS.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbHelpS.Location = new System.Drawing.Point(13, 534);
-            this.lbHelpS.Name = "lbHelpS";
-            this.lbHelpS.Size = new System.Drawing.Size(276, 39);
-            this.lbHelpS.TabIndex = 4;
-            this.lbHelpS.Text = "說明：(*)滑鼠右鍵可檢視學生選填明細與狀況\r\n　　　(*)分配社團志願請選擇班級後開始分配";
-            // 
-            // lbSelectClassCount
-            // 
-            this.lbSelectClassCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbSelectClassCount.AutoSize = true;
-            this.lbSelectClassCount.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.lbSelectClassCount.BackgroundStyle.Class = "";
-            this.lbSelectClassCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbSelectClassCount.Location = new System.Drawing.Point(602, 546);
-            this.lbSelectClassCount.Name = "lbSelectClassCount";
-            this.lbSelectClassCount.Size = new System.Drawing.Size(82, 21);
-            this.lbSelectClassCount.TabIndex = 5;
-            this.lbSelectClassCount.Text = "選擇班級：0";
-            // 
-            // lbHelpConSchool
-            // 
-            this.lbHelpConSchool.AutoSize = true;
-            this.lbHelpConSchool.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.lbHelpConSchool.BackgroundStyle.Class = "";
-            this.lbHelpConSchool.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbHelpConSchool.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbHelpConSchool.Location = new System.Drawing.Point(13, 9);
-            this.lbHelpConSchool.Name = "lbHelpConSchool";
-            this.lbHelpConSchool.Size = new System.Drawing.Size(112, 32);
-            this.lbHelpConSchool.TabIndex = 6;
-            this.lbHelpConSchool.Text = "已連線學校:";
             // 
             // colSchool
             // 
@@ -239,11 +178,73 @@
             this.colLock.ReadOnly = true;
             this.colLock.Width = 110;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 26);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem2.Text = "檢視志願序清單";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // lbHelpS
+            // 
+            this.lbHelpS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbHelpS.AutoSize = true;
+            this.lbHelpS.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lbHelpS.BackgroundStyle.Class = "";
+            this.lbHelpS.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbHelpS.Location = new System.Drawing.Point(13, 562);
+            this.lbHelpS.Name = "lbHelpS";
+            this.lbHelpS.Size = new System.Drawing.Size(535, 39);
+            this.lbHelpS.TabIndex = 4;
+            this.lbHelpS.Text = "說明：(*)滑鼠右鍵可檢視[學生選填明細]與狀況　(*)分配社團志願請[選擇班級]後開始分配\r\n　　　 (*)點擊[年級]欄位標題可進行排序";
+            // 
+            // lbSelectClassCount
+            // 
+            this.lbSelectClassCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbSelectClassCount.AutoSize = true;
+            this.lbSelectClassCount.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lbSelectClassCount.BackgroundStyle.Class = "";
+            this.lbSelectClassCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbSelectClassCount.Location = new System.Drawing.Point(602, 580);
+            this.lbSelectClassCount.Name = "lbSelectClassCount";
+            this.lbSelectClassCount.Size = new System.Drawing.Size(82, 21);
+            this.lbSelectClassCount.TabIndex = 5;
+            this.lbSelectClassCount.Text = "選擇班級：0";
+            // 
+            // lbHelpConSchool
+            // 
+            this.lbHelpConSchool.AutoSize = true;
+            this.lbHelpConSchool.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.lbHelpConSchool.BackgroundStyle.Class = "";
+            this.lbHelpConSchool.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbHelpConSchool.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbHelpConSchool.Location = new System.Drawing.Point(13, 9);
+            this.lbHelpConSchool.Name = "lbHelpConSchool";
+            this.lbHelpConSchool.Size = new System.Drawing.Size(112, 57);
+            this.lbHelpConSchool.TabIndex = 6;
+            this.lbHelpConSchool.Text = "已連線學校:\r\n學校名稱";
+            // 
             // VolunteerAssignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 576);
+            this.ClientSize = new System.Drawing.Size(894, 604);
             this.Controls.Add(this.lbHelpConSchool);
             this.Controls.Add(this.lbSelectClassCount);
             this.Controls.Add(this.lbHelpS);

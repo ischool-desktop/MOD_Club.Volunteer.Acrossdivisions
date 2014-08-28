@@ -22,6 +22,8 @@ namespace MOD_Club_Acrossdivisions
         /// </summary>
         Dictionary<string, AcrossRecord> SchoolClubDic { get; set; }
 
+        List<ClassRowInfo> RowList { get; set; }
+
         /// <summary>
         /// 國高中共同資源社團
         /// </summary>
@@ -34,6 +36,8 @@ namespace MOD_Club_Acrossdivisions
 
         Dictionary<string, string> LoginSchoolDic { get; set; }
 
+        List<LogAssignRecord> LogDic { get; set; }
+
         public VolunteerAssignment()
         {
             InitializeComponent();
@@ -45,11 +49,15 @@ namespace MOD_Club_Acrossdivisions
             BGW_Run = new BackgroundWorker();
             BGW_Run.RunWorkerCompleted += BGW_Run_RunWorkerCompleted;
             BGW_Run.DoWork += BGW_Run_DoWork;
+
+
         }
 
         private void VolunteerAssignment_Load(object sender, EventArgs e)
         {
             this.Text = "社團志願分配(跨部別)　資料取得中...";
+            dataGridViewX1.Enabled = false;
+            btnStart.Enabled = false;
             BGW.RunWorkerAsync();
         }
 
@@ -95,13 +103,17 @@ namespace MOD_Club_Acrossdivisions
         void BGW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             this.Text = "社團志願分配(跨部別)";
+            dataGridViewX1.Enabled = true;
+            btnStart.Enabled = true;
+
             if (!e.Cancelled)
             {
                 if (e.Error == null)
                 {
                     #region 畫面處理
 
-                    List<ClassRowInfo> RowList = new List<ClassRowInfo>();
+                    RowList = new List<ClassRowInfo>();
+
                     foreach (string each in SchoolClubDic.Keys)
                     {
                         List<ClassRowInfo> list = new List<ClassRowInfo>();
@@ -111,17 +123,17 @@ namespace MOD_Club_Acrossdivisions
                     }
 
                     dataGridViewX1.AutoGenerateColumns = false;
-  
+
                     dataGridViewX1.DataSource = RowList;
 
                     List<string> list_school = new List<string>();
                     foreach (LoginSchool each in LoginSchoolList)
                     {
-                        list_school.Add(each.School_Name);
+                        list_school.Add(each.School_Name + "(" + LoginSchoolDic[each.School_Name] + ")");
 
                     }
 
-                    lbHelpConSchool.Text = string.Format("{0}學年度 第{1}學期 , 已連線學校:{2}", K12.Data.School.DefaultSchoolYear, K12.Data.School.DefaultSemester, string.Join("，", list_school));
+                    lbHelpConSchool.Text = string.Format("{0}學年度 第{1}學期\n已連線學校:{2}", K12.Data.School.DefaultSchoolYear, K12.Data.School.DefaultSemester, string.Join("，", list_school));
 
                     #endregion
                 }
@@ -146,7 +158,6 @@ namespace MOD_Club_Acrossdivisions
 
             this.Text = "社團志願分配(跨部別)　開始志願分配...";
             btnStart.Enabled = false;
-            dataGridViewX1.Enabled = false;
 
             //開始志願分配作業
             //學生清單
@@ -163,6 +174,9 @@ namespace MOD_Club_Acrossdivisions
 
         void BGW_Run_DoWork(object sender, DoWorkEventArgs e)
         {
+            LogDic = new List<LogAssignRecord>();
+
+
             //資源整合社團 - MergerClubDic
 
             //目前要進行社團志願處理的班級 - RowDataList
@@ -189,6 +203,7 @@ namespace MOD_Club_Acrossdivisions
             Dictionary<string, XmlHelper> InsertDic = os.GetNewStudSCJoinList();
             foreach (string School_Name in InsertDic.Keys)
             {
+
                 Connection me = new Connection();
                 me.Connect(School_Name, tool._contract, FISCA.Authentication.DSAServices.PassportToken);
                 me = me.AsContract(tool._contract);
@@ -227,6 +242,25 @@ namespace MOD_Club_Acrossdivisions
             }
 
             #endregion
+
+            LogDic.Sort(SortLogRecord);
+            //LOG未完成
+            StringBuilder sbLog = new StringBuilder();
+            sbLog.AppendLine("志願分配結果如下:");
+            //LOG
+            foreach (LogAssignRecord la in LogDic)
+            {
+                if (!string.IsNullOrEmpty(la.其它))
+                {
+                    sbLog.AppendLine("部別「" + la.部別 + "」班級「" + la.班級 + "」座號「" + la.座號 + "」學生「" + la.姓名 + "」志願「" + la.志願 + "」社團名稱「" + la.社團名稱 + "」(高優先學生)");
+                }
+                else
+                {
+                    sbLog.AppendLine("部別「" + la.部別 + "」班級「" + la.班級 + "」座號「" + la.座號 + "」學生「" + la.姓名 + "」志願「" + la.志願 + "」社團名稱「" + la.社團名稱 + "」");
+                }
+            }
+
+            FISCA.LogAgent.ApplicationLog.Log("社團跨部別分配", "志願分配", sbLog.ToString());
 
         }
 
@@ -383,7 +417,7 @@ namespace MOD_Club_Acrossdivisions
                 if (oStudent.VolunteerList.ContainsKey(Number))
                 {
                     OnlineClub oc = oStudent.VolunteerList[Number];
-                    if (IsStep1)
+                    if (IsStep1) //高優先權
                     {
                         if (oc.ClubName == oStudent.LastClubName)
                         {
@@ -401,13 +435,31 @@ namespace MOD_Club_Acrossdivisions
                                 {
                                     //符合資格
                                     oStudent.SuccessSetupClub(Mclub);
+
+                                    LogAssignRecord lar = new LogAssignRecord();
+                                    if (string.IsNullOrEmpty(LoginSchoolDic[oStudent.School]))
+                                    {
+                                        lar.部別 = oStudent.School + "(" + LoginSchoolDic[oStudent.School] + ")";
+                                    }
+                                    else
+                                    {
+                                        lar.部別 = oStudent.School;
+                                    }
+                                    lar.班級 = oStudent.ClassName;
+                                    lar.姓名 = oStudent.Name;
+                                    lar.座號 = oStudent.SeatNo;
+                                    lar.志願 = Number.ToString();
+                                    lar.社團名稱 = Mclub.ClubName;
+                                    lar.其它 = "(高優先學生)";
+                                    LogDic.Add(lar);
+
                                 }
                             }
 
                             #endregion
                         }
                     }
-                    else
+                    else //第二優先權
                     {
                         #region 如果共同資源包含本社團
 
@@ -423,12 +475,35 @@ namespace MOD_Club_Acrossdivisions
                             {
                                 //符合資格
                                 oStudent.SuccessSetupClub(Mclub);
+
+                                LogAssignRecord lar = new LogAssignRecord();
+
+                                lar.部別 = GetSchoolName(oStudent.School);
+                                lar.班級 = oStudent.ClassName;
+                                lar.姓名 = oStudent.Name;
+                                lar.座號 = oStudent.SeatNo;
+                                lar.志願 = Number.ToString();
+                                lar.社團名稱 = Mclub.ClubName;
+                                lar.其它 = "";
+                                LogDic.Add(lar);
                             }
                         }
 
                         #endregion
                     }
                 }
+            }
+        }
+
+        private string GetSchoolName(string p)
+        {
+            if (LoginSchoolDic.ContainsKey(p))
+            {
+                return p + "(" + LoginSchoolDic[p] + ")";
+            }
+            else
+            {
+                return string.Empty;
             }
         }
 
@@ -460,16 +535,25 @@ namespace MOD_Club_Acrossdivisions
         {
             this.Text = "社團志願分配(跨部別)";
             btnStart.Enabled = true;
-            dataGridViewX1.Enabled = true;
             if (!e.Cancelled)
             {
                 if (e.Error == null)
                 {
+
                     K12.Club.Volunteer.ClubEvents.RaiseAssnChanged();
 
                     this.Text = "社團志願分配(跨部別)　資料取得中...";
+                    btnStart.Enabled = false;
                     BGW.RunWorkerAsync();
-                    MsgBox.Show("社團分配完成!!");
+                    DialogResult dr = MsgBox.Show("社團分配完成!!\n您是否要檢視分配狀況總表?", MessageBoxButtons.YesNo, MessageBoxDefaultButton.Button2);
+                    if (dr == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        //將LOG清單列印出來...
+                        LogDic.Sort(SortLogRecord);
+
+                        VolunteerLOG log = new VolunteerLOG(LogDic);
+                        log.ShowDialog();
+                    }
                 }
                 else
                 {
@@ -480,6 +564,19 @@ namespace MOD_Club_Acrossdivisions
             {
                 MsgBox.Show("已停止志願分配!!!");
             }
+        }
+
+        private int SortLogRecord(LogAssignRecord lar1, LogAssignRecord lar2)
+        {
+            string Name1 = lar1.部別.PadLeft(20, '0');
+            Name1 += lar1.班級.PadLeft(10, '0');
+            Name1 += lar1.座號.PadLeft(3, '0');
+
+            string Name2 = lar2.部別.PadLeft(20, '0');
+            Name2 += lar2.班級.PadLeft(10, '0');
+            Name2 += lar2.座號.PadLeft(3, '0');
+
+            return Name1.CompareTo(Name2);
         }
 
         /// <summary>
@@ -547,5 +644,40 @@ namespace MOD_Club_Acrossdivisions
                 }
             }
         }
+
+        private void dataGridViewX1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == colYear.Index)
+            {
+                RowList.Sort(SortRowList);
+
+                dataGridViewX1.Refresh();
+            }
+        }
+
+        private int SortRowList(ClassRowInfo cri1, ClassRowInfo cri2)
+        {
+            string name1 = cri1.GradeYear.PadLeft(3, '0');
+
+            name1 += cri1.School.PadLeft(30, '0');
+            name1 += cri1.ClassName.PadLeft(10, '0');
+
+            string name2 = cri2.GradeYear.PadLeft(3, '0');
+            name2 += cri2.School.PadLeft(30, '0');
+            name2 += cri2.ClassName.PadLeft(10, '0');
+
+            return name1.CompareTo(name2);
+        }
+    }
+
+    public class LogAssignRecord
+    {
+        public string 部別 { get; set; }
+        public string 姓名 { get; set; }
+        public string 座號 { get; set; }
+        public string 班級 { get; set; }
+        public string 志願 { get; set; }
+        public string 社團名稱 { get; set; }
+        public string 其它 { get; set; }
     }
 }

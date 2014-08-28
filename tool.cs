@@ -146,38 +146,42 @@ namespace MOD_Club_Acrossdivisions
         static public Dictionary<string, AcrossRecord> SchoolClubDetail(List<LoginSchool> LoginSchoolList)
         {
             Dictionary<string, AcrossRecord> AcrossDic = new Dictionary<string, AcrossRecord>();
-            foreach (LoginSchool login in LoginSchoolList)
+
+            if (FISCA.Authentication.DSAServices.PassportToken != null)
             {
-                Connection me = new Connection();
-                me.Connect(login.School_Name, _contract, FISCA.Authentication.DSAServices.PassportToken);
-                me = me.AsContract(_contract);
-
-                //取得本學年度/學期
-                //目前系統中有參與記錄的學生 & 是否鎖定
-                Dictionary<string, OnlineSCJoin> StudentSCJoinDic = RunService.GetDefSCJoinStudent(me);
-
-                //取得指定學年度學期的社長副社長清單
-                Dictionary<string, OnlinePresident> StudentPresidentDic = RunService.GetDefPresident(me);
-
-                AcrossRecord ar = new AcrossRecord();
-                ar.School = login.School_Name;
-                ar.SchoolRemake = login.Remark;
-
-                //取得可選社之學生
-                //年級/班級/座號/姓名/科別
-                //StudentSCJoinDic - 是否有社團參與記錄
-                //StudentPresidentDic - 是否有'前期'社長副/社長記錄
-                ar.StudentDic = RunService.GetStuentList(me, StudentSCJoinDic, StudentPresidentDic);
-
-                //取得預設(學年度,學期)學校之社團記錄
-                ar.ClubDic = RunService.GetDefClubList(me);
-
-                //取得學生之選填志願內容
-                ar.VolunteerList = RunService.GetDefVolunteer(me, login);
-
-                if (!AcrossDic.ContainsKey(login.School_Name))
+                foreach (LoginSchool login in LoginSchoolList)
                 {
-                    AcrossDic.Add(login.School_Name, ar);
+                    Connection me = new Connection();
+                    me.Connect(login.School_Name, _contract, FISCA.Authentication.DSAServices.PassportToken);
+                    me = me.AsContract(_contract);
+
+                    //取得本學年度/學期
+                    //目前系統中有參與記錄的學生 & 是否鎖定
+                    Dictionary<string, OnlineSCJoin> StudentSCJoinDic = RunService.GetDefSCJoinStudent(me);
+
+                    //取得指定學年度學期的社長副社長清單
+                    Dictionary<string, OnlinePresident> StudentPresidentDic = RunService.GetDefPresident(me);
+
+                    AcrossRecord ar = new AcrossRecord();
+                    ar.School = login.School_Name;
+                    ar.SchoolRemake = login.Remark;
+
+                    //取得可選社之學生
+                    //年級/班級/座號/姓名/科別
+                    //StudentSCJoinDic - 是否有社團參與記錄
+                    //StudentPresidentDic - 是否有'前期'社長副/社長記錄
+                    ar.StudentDic = RunService.GetStuentList(me, StudentSCJoinDic, StudentPresidentDic);
+
+                    //取得預設(學年度,學期)學校之社團記錄
+                    ar.ClubDic = RunService.GetDefClubList(me);
+
+                    //取得學生之選填志願內容
+                    ar.VolunteerList = RunService.GetDefVolunteer(me, login);
+
+                    if (!AcrossDic.ContainsKey(login.School_Name))
+                    {
+                        AcrossDic.Add(login.School_Name, ar);
+                    }
                 }
             }
 
@@ -242,184 +246,5 @@ namespace MOD_Club_Acrossdivisions
             }
         }
 
-        /// <summary>
-        /// 取得社團中英文對照名稱
-        /// </summary>
-        /// <returns></returns>
-        public static Dictionary<string, string> GetEngList()
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            List<EnglishTable> EngList = tool._A.Select<EnglishTable>();
-            foreach (EnglishTable each in EngList)
-            {
-                if (!dic.ContainsKey(each.ClubName))
-                {
-                    dic.Add(each.ClubName, each.English);
-                }
-            }
-            return dic;
-        }
-
-
-        public static string GetDay(int n)
-        {
-            string EngMonth = "";
-            switch (n.ToString())
-            {
-                case "1":
-                    EngMonth = "first";
-                    break;
-                case "2":
-                    EngMonth = "second";
-                    break;
-                case "3":
-                    EngMonth = "third";
-                    break;
-                case "4":
-                    EngMonth = "fourth";
-                    break;
-                case "5":
-                    EngMonth = "fifth";
-                    break;
-                case "6":
-                    EngMonth = "sixth";
-                    break;
-                case "7":
-                    EngMonth = "seventh";
-                    break;
-                case "8":
-                    EngMonth = "eighth";
-                    break;
-                case "9":
-                    EngMonth = "ninth";
-                    break;
-                case "10":
-                    EngMonth = "tenth";
-                    break;
-                case "11":
-                    EngMonth = "eleventh";
-                    break;
-                case "12":
-                    EngMonth = "twelfth";
-                    break;
-                case "13":
-                    EngMonth = "thirteenth";
-                    break;
-                case "14":
-                    EngMonth = "fourteenth";
-                    break;
-                case "15":
-                    EngMonth = "fifteenth";
-                    break;
-                case "16":
-                    EngMonth = "sixteenth";
-                    break;
-                case "17":
-                    EngMonth = "seventeenth";
-                    break;
-                case "18":
-                    EngMonth = "eighteenth";
-                    break;
-                case "19":
-                    EngMonth = "nineteenth";
-                    break;
-                case "20":
-                    EngMonth = "twentieth";
-                    break;
-                case "21":
-                    EngMonth = "twenty-first";
-                    break;
-                case "22":
-                    EngMonth = "twenty-second";
-                    break;
-                case "23":
-                    EngMonth = "twenty-third";
-                    break;
-                case "24":
-                    EngMonth = "twenty-fourth";
-                    break;
-                case "25":
-                    EngMonth = "twenty-fifth";
-                    break;
-                case "26":
-                    EngMonth = "twenty-sixth";
-                    break;
-                case "27":
-                    EngMonth = "twenty-seventh";
-                    break;
-                case "28":
-                    EngMonth = "twenty-eighth";
-                    break;
-                case "29":
-                    EngMonth = "twenty-ninth";
-                    break;
-                case "30":
-                    EngMonth = "thirtieth";
-                    break;
-                case "31":
-                    EngMonth = "thirty-first";
-                    break;
-                default:
-                    EngMonth = "";
-                    break;
-            }
-            return EngMonth;
-
-        }
-
-
-
-
-        /// <summary>
-        /// 取得月份英文名稱
-        /// </summary>
-        public static string GetMonth(int n)
-        {
-            string EngMonth = "";
-            switch (n.ToString())
-            {
-                case "1":
-                    EngMonth = "January";
-                    break;
-                case "2":
-                    EngMonth = "February";
-                    break;
-                case "3":
-                    EngMonth = "March";
-                    break;
-                case "4":
-                    EngMonth = "April";
-                    break;
-                case "5":
-                    EngMonth = "May";
-                    break;
-                case "6":
-                    EngMonth = "June";
-                    break;
-                case "7":
-                    EngMonth = "July";
-                    break;
-                case "8":
-                    EngMonth = "August";
-                    break;
-                case "9":
-                    EngMonth = "September";
-                    break;
-                case "10":
-                    EngMonth = "October";
-                    break;
-                case "11":
-                    EngMonth = "November";
-                    break;
-                case "12":
-                    EngMonth = "December";
-                    break;
-                default:
-                    EngMonth = "";
-                    break;
-            }
-            return EngMonth;
-        }
     }
-
 }

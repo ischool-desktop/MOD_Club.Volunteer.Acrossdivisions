@@ -133,8 +133,19 @@ namespace MOD_Club_Acrossdivisions
                 return;
             }
 
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("已調整志願分配部別設定:");
+            sb.AppendLine("原設定:");
+
             List<LoginSchool> delList = tool._A.Select<LoginSchool>();
             tool._A.DeletedValues(delList);
+            foreach (LoginSchool each in delList)
+            {
+                sb.AppendLine("學校「" + each.School_Name + "」" + "備註「" + each.Remark + "」");
+
+            }
+
+            sb.AppendLine("修改為:");
 
             List<LoginSchool> LoginSchoolList = new List<LoginSchool>();
             foreach (DataGridViewRow row in dataGridViewX1.Rows)
@@ -148,12 +159,16 @@ namespace MOD_Club_Acrossdivisions
                     ls.School_Name = "" + row.Cells[SchoolDomain.Index].Value;
                     ls.Remark = "" + row.Cells[remake.Index].Value;
                     LoginSchoolList.Add(ls);
+
+                    sb.AppendLine("學校「" + ls.School_Name + "」" + "備註「" + ls.Remark + "」");
                 }
             }
 
             if (LoginSchoolList.Count > 0)
             {
                 tool._A.InsertValues(LoginSchoolList);
+                FISCA.LogAgent.ApplicationLog.Log("志願分配部別設定", "連線學校", sb.ToString());
+
                 MsgBox.Show("儲存成功");
                 this.Close();
             }

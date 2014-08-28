@@ -77,36 +77,15 @@ namespace MOD_Club_Acrossdivisions
                 sot.ShowDialog();
             };
 
-            RibbonBarItem InClub = FISCA.Presentation.MotherForm.RibbonBarItems["志願序社團", "其它"];
-            InClub["社團中英文管理"].Image = Properties.Resources.copy_refresh_64;
-            InClub["社團中英文管理"].Enable = Permissions.社團中英文對照表權限;
-            InClub["社團中英文管理"].Click += delegate
-            {
-                EnglishTableForm sot = new EnglishTableForm();
-                sot.ShowDialog();
-            };
-
-            RibbonBarItem InStudent = FISCA.Presentation.MotherForm.RibbonBarItems["學生", "資料統計"];
-            InStudent["報表"]["社團相關報表"]["社團參與證明單(英文)"].Enable = Permissions.社團參與證明單_英文權限;
-            InStudent["報表"]["社團相關報表"]["社團參與證明單(英文)"].Click += delegate
-            {
-                EnglishSocietiesProveSingle esps = new EnglishSocietiesProveSingle();
-                esps.ShowDialog();
-            };
-
             //是否能夠只用單一代碼,決定此模組之使用
             Catalog detail1;
             detail1 = RoleAclSource.Instance["社團"]["功能項目"];
             detail1.Add(new RibbonFeature(Permissions.連線, "連線_跨部別"));
             detail1.Add(new RibbonFeature(Permissions.社團志願分配, "社團志願分配_跨部別"));
-            detail1.Add(new RibbonFeature(Permissions.社團中英文對照表, "社團中英文對照表"));
 
             detail1 = RoleAclSource.Instance["社團"]["報表"];
             detail1.Add(new RibbonFeature(Permissions.社團點名單, "社團點名單_跨部別"));
             detail1.Add(new RibbonFeature(Permissions.社團概況表, "社團概況表_跨部別"));
-
-            detail1 = RoleAclSource.Instance["學生"]["報表"];
-            detail1.Add(new RibbonFeature(Permissions.社團參與證明單_英文, "社團參與證明單_英文"));
         }
     }
 }
