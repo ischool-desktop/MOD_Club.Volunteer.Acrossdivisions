@@ -131,7 +131,7 @@ namespace MOD_Club_Acrossdivisions
                 }
                 else
                 {
-                    message = "失敗：其它";
+                    message = "失敗：其它「" + ex.Message + "」";
                 }
             }
             else

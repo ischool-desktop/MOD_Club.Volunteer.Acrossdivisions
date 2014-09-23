@@ -89,33 +89,35 @@ namespace MOD_Club_Acrossdivisions
                 }
             }
 
-            if (oStudent.GradeYear == "1")
+            string message = oStudent.GradeYear + "年級人數已達上限";
+
+            if (oStudent.GradeYear == "1" || oStudent.GradeYear == "7")
             {
                 if (tool.CheckValue(Grade1Limit))
                 {
                     if (int.Parse(Grade1Limit) <= Now_Grade1Limit)
                     {
-                        return "1年級人數已達上限";
+                        return message;
                     }
                 }
             }
-            else if (oStudent.GradeYear == "2")
+            else if (oStudent.GradeYear == "2" || oStudent.GradeYear == "8")
             {
                 if (tool.CheckValue(Grade2Limit))
                 {
                     if (int.Parse(Grade2Limit) <= Now_Grade2Limit)
                     {
-                        return "2年級人數已達上限";
+                        return message;
                     }
                 }
             }
-            else if (oStudent.GradeYear == "3")
+            else if (oStudent.GradeYear == "3" || oStudent.GradeYear == "9")
             {
                 if (tool.CheckValue(Grade3Limit))
                 {
                     if (int.Parse(Grade3Limit) <= Now_Grade3Limit)
                     {
-                        return "3年級人數已達上限";
+                        return message;
                     }
                 }
             }
@@ -149,7 +151,7 @@ namespace MOD_Club_Acrossdivisions
                 }
             }
             return "";
-        } 
+        }
 
         #endregion
 

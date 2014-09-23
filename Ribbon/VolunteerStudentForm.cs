@@ -69,7 +69,7 @@ namespace MOD_Club_Acrossdivisions
                     if (vr.原有社團.IsLock)
                     {
                         Color c = new Color();
-                        row.DefaultCellStyle.BackColor = Color.LimeGreen;
+                        row.DefaultCellStyle.BackColor = Color.GreenYellow;
                     }
                     else
                     {

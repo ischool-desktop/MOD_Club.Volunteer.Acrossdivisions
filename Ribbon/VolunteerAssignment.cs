@@ -243,8 +243,25 @@ namespace MOD_Club_Acrossdivisions
 
             #endregion
 
-            LogDic.Sort(SortLogRecord);
             //LOG未完成
+            StringBuilder sbLog_s = new StringBuilder();
+            sbLog_s.AppendLine("志願分配結果如下:");
+            //LOG
+            foreach (LogAssignRecord la in LogDic)
+            {
+                if (!string.IsNullOrEmpty(la.其它))
+                {
+                    sbLog_s.AppendLine("部別「" + la.部別 + "」班級「" + la.班級 + "」座號「" + la.座號 + "」學生「" + la.姓名 + "」志願「" + la.志願 + "」社團名稱「" + la.社團名稱 + "」(高優先學生)");
+                }
+                else
+                {
+                    sbLog_s.AppendLine("部別「" + la.部別 + "」班級「" + la.班級 + "」座號「" + la.座號 + "」學生「" + la.姓名 + "」志願「" + la.志願 + "」社團名稱「" + la.社團名稱 + "」");
+                }
+            }
+            FISCA.LogAgent.ApplicationLog.Log("[特殊歷程]", "志願分配", sbLog_s.ToString());
+
+
+            LogDic.Sort(SortLogRecord);
             StringBuilder sbLog = new StringBuilder();
             sbLog.AppendLine("志願分配結果如下:");
             //LOG
@@ -259,7 +276,6 @@ namespace MOD_Club_Acrossdivisions
                     sbLog.AppendLine("部別「" + la.部別 + "」班級「" + la.班級 + "」座號「" + la.座號 + "」學生「" + la.姓名 + "」志願「" + la.志願 + "」社團名稱「" + la.社團名稱 + "」");
                 }
             }
-
             FISCA.LogAgent.ApplicationLog.Log("社團跨部別分配", "志願分配", sbLog.ToString());
 
         }
@@ -283,10 +299,7 @@ namespace MOD_Club_Acrossdivisions
 
             if (os.Step1Student.Count > 0)
             {
-                foreach (OnlineStudent stud in os.Step1Student)
-                {
-                    Step1(stud);
-                }
+                Step1(os.Step1Student);
             }
 
             #endregion
@@ -311,8 +324,6 @@ namespace MOD_Club_Acrossdivisions
                 }
             }
 
-
-
             //設定亂數
             SetRan(os.Step2Student);
 
@@ -321,9 +332,9 @@ namespace MOD_Club_Acrossdivisions
 
             if (os.Step2Student.Count > 0)
             {
-                foreach (OnlineStudent stud in os.Step2Student)
+                for (int Number = 1; Number <= tool.學生選填志願數; Number++)
                 {
-                    Step2(stud);
+                    Step2(os.Step2Student, Number);
                 }
             }
 
@@ -368,29 +379,29 @@ namespace MOD_Club_Acrossdivisions
         }
 
         //高優先權學生(只處理第一志願)
-        private void Step1(OnlineStudent stud)
+        private void Step1(List<OnlineStudent> studList)
         {
-            //沒有參與社團,尚未分配成功
-            if (!stud.JoinSuccess)
+            foreach (OnlineStudent stud in studList)
             {
-                VolunteersDistributor(stud, 1, true);
+                //沒有參與社團,尚未分配成功
+                if (!stud.JoinSuccess)
+                {
+                    VolunteersDistributor(stud, 1, true);
+                }
             }
         }
 
-        private void Step2(OnlineStudent stud)
+        private void Step2(List<OnlineStudent> studList, int Number)
         {
-            for (int Number = 1; Number <= tool.學生選填志願數; Number++)
+            foreach (OnlineStudent stud in studList)
             {
                 //沒有參與社團,尚未分配成功
                 if (!stud.JoinSuccess)
                 {
                     VolunteersDistributor(stud, Number, false);
                 }
-                else
-                {
-                    break;
-                }
             }
+
         }
 
         /// <summary>
