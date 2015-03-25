@@ -16,7 +16,7 @@ namespace MOD_Club_Acrossdivisions
         static public void Main()
         {
 
-            ServerModule.AutoManaged("https://module.ischool.com.tw/module/138/Club_Acrossdivisions/udm.xml");
+            ServerModule.AutoManaged("http://module.ischool.com.tw/module/138/Club_Acrossdivisions/udm.xml");
 
             #region 處理UDT Table沒有的問題
 
