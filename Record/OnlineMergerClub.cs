@@ -91,7 +91,7 @@ namespace MOD_Club_Acrossdivisions
 
             string message = oStudent.GradeYear + "年級人數已達上限";
 
-            if (oStudent.GradeYear == "1" || oStudent.GradeYear == "7")
+            if (oStudent.GradeYear == "1" || oStudent.GradeYear == "4" || oStudent.GradeYear == "7" || oStudent.GradeYear == "10")
             {
                 if (tool.CheckValue(Grade1Limit))
                 {
@@ -101,7 +101,7 @@ namespace MOD_Club_Acrossdivisions
                     }
                 }
             }
-            else if (oStudent.GradeYear == "2" || oStudent.GradeYear == "8")
+            else if (oStudent.GradeYear == "2" || oStudent.GradeYear == "5" || oStudent.GradeYear == "8" || oStudent.GradeYear == "11")
             {
                 if (tool.CheckValue(Grade2Limit))
                 {
@@ -111,7 +111,7 @@ namespace MOD_Club_Acrossdivisions
                     }
                 }
             }
-            else if (oStudent.GradeYear == "3" || oStudent.GradeYear == "9")
+            else if (oStudent.GradeYear == "3" || oStudent.GradeYear == "6" || oStudent.GradeYear == "9" || oStudent.GradeYear == "12")
             {
                 if (tool.CheckValue(Grade3Limit))
                 {
@@ -374,15 +374,15 @@ namespace MOD_Club_Acrossdivisions
         public void Increase(OnlineStudent student)
         {
 
-            if (student.GradeYear == "1")
+            if (student.GradeYear == "1" || student.GradeYear == "4" || student.GradeYear == "7" || student.GradeYear == "10")
             {
                 Grade1.SetIncrease(student.School, 1);
             }
-            else if (student.GradeYear == "2")
+            else if (student.GradeYear == "2" || student.GradeYear == "5" || student.GradeYear == "8" || student.GradeYear == "11")
             {
                 Grade2.SetIncrease(student.School, 1);
             }
-            else if (student.GradeYear == "3")
+            else if (student.GradeYear == "3" || student.GradeYear == "6" || student.GradeYear == "9" || student.GradeYear == "12")
             {
                 Grade3.SetIncrease(student.School, 1);
             }
@@ -395,15 +395,15 @@ namespace MOD_Club_Acrossdivisions
         public void Decrease(OnlineStudent student)
         {
 
-            if (student.GradeYear == "1")
+            if (student.GradeYear == "1" || student.GradeYear == "4" || student.GradeYear == "7" || student.GradeYear == "10")
             {
                 Grade1.SetDecrease(student.School, 1);
             }
-            else if (student.GradeYear == "2")
+            else if (student.GradeYear == "2" || student.GradeYear == "5" || student.GradeYear == "8" || student.GradeYear == "11")
             {
                 Grade2.SetDecrease(student.School, 1);
             }
-            else if (student.GradeYear == "3")
+            else if (student.GradeYear == "3" || student.GradeYear == "6" || student.GradeYear == "9" || student.GradeYear == "12")
             {
                 Grade3.SetDecrease(student.School, 1);
             }
