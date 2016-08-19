@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbDefTemp = new System.Windows.Forms.LinkLabel();
             this.lbTempAll = new System.Windows.Forms.LinkLabel();
             this.btnStart = new DevComponents.DotNetBar.ButtonX();
@@ -67,7 +67,7 @@
             this.lbDefTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbDefTemp.AutoSize = true;
             this.lbDefTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbDefTemp.Location = new System.Drawing.Point(14, 526);
+            this.lbDefTemp.Location = new System.Drawing.Point(14, 577);
             this.lbDefTemp.Name = "lbDefTemp";
             this.lbDefTemp.Size = new System.Drawing.Size(60, 17);
             this.lbDefTemp.TabIndex = 0;
@@ -80,7 +80,7 @@
             this.lbTempAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTempAll.AutoSize = true;
             this.lbTempAll.BackColor = System.Drawing.Color.Transparent;
-            this.lbTempAll.Location = new System.Drawing.Point(80, 526);
+            this.lbTempAll.Location = new System.Drawing.Point(80, 577);
             this.lbTempAll.Name = "lbTempAll";
             this.lbTempAll.Size = new System.Drawing.Size(86, 17);
             this.lbTempAll.TabIndex = 1;
@@ -94,7 +94,7 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.BackColor = System.Drawing.Color.Transparent;
             this.btnStart.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnStart.Location = new System.Drawing.Point(216, 522);
+            this.btnStart.Location = new System.Drawing.Point(216, 573);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 25);
             this.btnStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -108,7 +108,7 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(297, 522);
+            this.btnExit.Location = new System.Drawing.Point(297, 573);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 25);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -125,11 +125,12 @@
             // 
             this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(19, 471);
+            this.labelX1.Location = new System.Drawing.Point(9, 474);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(350, 39);
+            this.labelX1.Size = new System.Drawing.Size(361, 91);
             this.labelX1.TabIndex = 4;
-            this.labelX1.Text = "功能說明：\r\n本功能將列印出所選\"社團\"在可連線之\"部別\"所有學生清單";
+            this.labelX1.Text = "功能說明：\r\n1.本功能將列印出所選\"社團\"在可連線之\"部別\"所有學生清單\r\n2.列印的日數,預設範本的限制為6日\r\n如須更多日數,請調整範本與功能變數\r\n3.每" +
+    "日上課之節次,由於各校皆不同,請開啟範本調整";
             // 
             // linkLabel3
             // 
@@ -525,14 +526,14 @@
             this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 226);
             this.dataGridViewX1.Name = "dataGridViewX1";
@@ -542,8 +543,8 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column1.HeaderText = "日期";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -551,8 +552,8 @@
             // 
             // Column2
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightCyan;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column2.HeaderText = "星期";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -575,7 +576,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 556);
+            this.ClientSize = new System.Drawing.Size(382, 607);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.dataGridViewX1);

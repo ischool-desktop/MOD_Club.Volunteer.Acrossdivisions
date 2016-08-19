@@ -47,11 +47,11 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(450, 333);
+            this.btnSave.Location = new System.Drawing.Point(458, 356);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSave.TabIndex = 0;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "儲存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -61,11 +61,11 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(531, 334);
+            this.btnExit.Location = new System.Drawing.Point(539, 357);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnExit.TabIndex = 1;
+            this.btnExit.TabIndex = 3;
             this.btnExit.Text = "離開";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -94,8 +94,8 @@
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
-            this.dataGridViewX1.Size = new System.Drawing.Size(594, 262);
-            this.dataGridViewX1.TabIndex = 2;
+            this.dataGridViewX1.Size = new System.Drawing.Size(602, 265);
+            this.dataGridViewX1.TabIndex = 0;
             this.dataGridViewX1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellClick);
             this.dataGridViewX1.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewX1_UserAddedRow);
             // 
@@ -138,18 +138,18 @@
             // 
             this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(12, 285);
+            this.labelX1.Location = new System.Drawing.Point(9, 288);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(378, 73);
-            this.labelX1.TabIndex = 3;
+            this.labelX1.Size = new System.Drawing.Size(443, 91);
+            this.labelX1.TabIndex = 1;
             this.labelX1.Text = "1.請輸入連結學校Domain Name\r\n2.於學校建立您的登入帳號,按\"測試\"鈕\"成功\"後才可以正確儲存\r\n3.必須是ischool Account才可以進行" +
-    "連線\r\n4.所有欲分配的部別均需設定於畫面上(包含目前登入之部別)";
+    "連線\r\n4.所有欲分配的部別均需設定於畫面上(包含目前登入之部別)\r\n5.備註欄位,如連線之學校為為國中請輸入[國中部],如為高中請輸入[高中部]";
             // 
             // NowConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 369);
+            this.ClientSize = new System.Drawing.Size(626, 392);
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.dataGridViewX1);
             this.Controls.Add(this.btnExit);

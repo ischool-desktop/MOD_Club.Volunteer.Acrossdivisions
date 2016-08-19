@@ -37,6 +37,7 @@
             this.lbHelp1 = new DevComponents.DotNetBar.LabelX();
             this.lbTempAll = new System.Windows.Forms.LinkLabel();
             this.lbDefTemp = new System.Windows.Forms.LinkLabel();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +49,7 @@
             this.btnExit.AutoSize = true;
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(263, 114);
+            this.btnExit.Location = new System.Drawing.Point(263, 170);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 25);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -63,7 +64,7 @@
             this.btnSave.AutoSize = true;
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(182, 114);
+            this.btnSave.Location = new System.Drawing.Point(182, 170);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -157,7 +158,7 @@
             this.lbTempAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTempAll.AutoSize = true;
             this.lbTempAll.BackColor = System.Drawing.Color.Transparent;
-            this.lbTempAll.Location = new System.Drawing.Point(75, 122);
+            this.lbTempAll.Location = new System.Drawing.Point(75, 178);
             this.lbTempAll.Name = "lbTempAll";
             this.lbTempAll.Size = new System.Drawing.Size(86, 17);
             this.lbTempAll.TabIndex = 15;
@@ -170,7 +171,7 @@
             this.lbDefTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbDefTemp.AutoSize = true;
             this.lbDefTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbDefTemp.Location = new System.Drawing.Point(9, 122);
+            this.lbDefTemp.Location = new System.Drawing.Point(9, 178);
             this.lbDefTemp.Name = "lbDefTemp";
             this.lbDefTemp.Size = new System.Drawing.Size(60, 17);
             this.lbDefTemp.TabIndex = 14;
@@ -178,11 +179,27 @@
             this.lbDefTemp.Text = "範本設定";
             this.lbDefTemp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbDefTemp_LinkClicked);
             // 
+            // labelX1
+            // 
+            this.labelX1.AutoSize = true;
+            this.labelX1.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.Class = "";
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(12, 102);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(267, 56);
+            this.labelX1.TabIndex = 16;
+            this.labelX1.Text = "說明:列印本報表,跨部別連線功能之備註欄位\r\n請依國中填入國中部/高中填入高中部\r\n以利判斷國/高中部別人數統計";
+            // 
             // SocietiesOverviewTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 147);
+            this.ClientSize = new System.Drawing.Size(350, 203);
+            this.Controls.Add(this.labelX1);
             this.Controls.Add(this.lbTempAll);
             this.Controls.Add(this.lbDefTemp);
             this.Controls.Add(this.btnExit);
@@ -214,5 +231,6 @@
         private DevComponents.DotNetBar.LabelX lbHelp1;
         private System.Windows.Forms.LinkLabel lbTempAll;
         private System.Windows.Forms.LinkLabel lbDefTemp;
+        private DevComponents.DotNetBar.LabelX labelX1;
     }
 }

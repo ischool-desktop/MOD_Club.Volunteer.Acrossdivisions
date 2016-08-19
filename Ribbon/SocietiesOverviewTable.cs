@@ -54,6 +54,11 @@ namespace MOD_Club_Acrossdivisions
 
             BGW.DoWork += BGW_DoWork;
             BGW.RunWorkerCompleted += BGW_RunWorkerCompleted;
+
+            if (FISCA.Authentication.DSAServices.PassportToken == null)
+            {
+                MsgBox.Show("請使用ischool Account登入\n再使用跨部別功能!!");
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)

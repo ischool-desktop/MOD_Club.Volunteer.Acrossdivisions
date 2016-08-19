@@ -127,7 +127,7 @@ namespace MOD_Club_Acrossdivisions
                 }
                 else if (ex.Message == "並未將物件參考設定為物件的執行個體。")
                 {
-                    message = "失敗：帳號不是ischool Account";
+                    message = "失敗：登入帳號不是ischool Account";
                 }
                 else
                 {

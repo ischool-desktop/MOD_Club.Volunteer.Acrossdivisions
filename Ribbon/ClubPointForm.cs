@@ -55,6 +55,12 @@ namespace MOD_Club_Acrossdivisions
                 return;
             }
 
+            if (FISCA.Authentication.DSAServices.PassportToken == null)
+            {
+                MsgBox.Show("請使用ischool Account登入\n再使用跨部別功能!!");
+                return;
+            }
+
             if (!BGW.IsBusy)
             {
                 this.Text = "社團點名單(跨部別)　資料處理中...";
@@ -317,7 +323,14 @@ namespace MOD_Club_Acrossdivisions
                 }
                 else
                 {
-                    MsgBox.Show("列印發生錯誤..\n" + e.Error.Message);
+                    if (e.Error.Message == "並未將物件參考設定為物件的執行個體。")
+                    {
+                        MsgBox.Show("列印發生錯誤..\n失敗：登入帳號不是ischool Account");
+                    }
+                    else
+                    {
+                        MsgBox.Show("列印發生錯誤..\n" + e.Error.Message);
+                    }
                 }
             }
             else
